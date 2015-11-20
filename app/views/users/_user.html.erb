@@ -2,8 +2,7 @@
   <%= gravatar_for user %>
   <%= link_to user.nom, user %>
   <% if current_user.admin? && !current_user?(user) %>
-  | <%= link_to "effacer", user, method: :delete,
-                                data: { confirm: "Etes-vous sûr ?" } %>
+  | <%= link_to "effacer", user, method: :delete, data: { confirm: "Etes-vous sûr ?" } %>
   <% end %>
 
 </li>

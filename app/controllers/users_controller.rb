@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def index
@@ -41,14 +42,7 @@ class UsersController < ApplicationController
      render 'edit'
     end
   end
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Veuillez vous connecter."
-      redirect_to login_url
-    end
-  end
-
+  
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Utilisateur effacé"
